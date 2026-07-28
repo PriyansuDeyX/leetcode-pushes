@@ -1,0 +1,23 @@
+rom collections import Counter
+
+class Solution:
+    def smallestPalindrome(self, s: str) -> str:
+        #String-er prottekta character kobar ache seta gunbo (frequency count korchi)
+        count = Counter(s)
+        
+        half = []
+        odd_char = ""
+        
+        #Alphabetical order-e (a theke z) sort kore loop chalacchi jate lexicographically smallest pai
+        for char in sorted(count.keys()):
+            freq = count[char]
+            #Proti bar character-gulo ke adha kore first half-e add korchi
+            half.append(char * (freq // 2))
+            #Jodi kono character-er count odd hoy, tahole take majhkane rakhar jonno store korchi
+            if freq % 2 != 0:
+                odd_char = char
+                
+        first_half = "".join(half)
+        
+        #First half, majher odd character (jodi thake),r first half-er ulto (reversed) version judhe palindrome baniye dicchi
+        return first_half + odd_char + first_half[::-1]
