@@ -1,4 +1,13 @@
-[42,13,99,13,71,32,64,32,63,44,6,22,8,2,55,88,43,40,71,80,95,32,46,19]
-44
-[73,56,63,98,5,42,29,10,55,11,41,24,62,31,46,95,76,74,26,37,22,58,99,93,97,15,88,4,14,33,69,40,14,93,37,26,60,94,29,95,4,54,100,10,44,60,58,58,72,82,29,56,36,49,77,12,74,52,85,51,13,14,47]
-99
+1import java.util.HashSet;
+2import java.util.Set;
+3
+4public class Solution {
+5    public int missingMultiple(int[] nums, int k) {
+6        Set<Integer> set = new HashSet<>();
+7        for (int num : nums) if (num % k == 0) set.add(num);
+8        
+9        int target = k;
+10        while (set.contains(target)) target += k;
+11        return target;
+12    }
+13}
